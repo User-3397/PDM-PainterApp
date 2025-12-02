@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
         //leading: const Icon(Icons.home), //
         actions: <Widget>[
           CircleAvatar(
-            backgroundImage: AssetImage('assets/images/user-16.png'),
+            backgroundImage: const AssetImage('lib/images/client-16.png'),
           ),
         ],
       ),
@@ -39,7 +39,7 @@ class MyHomePage extends StatelessWidget {
               },
               child: const Text('Clientes'),
             ),
-
+            const SizedBox(height: 20),
             // Botao para lista de tarefas:
             ElevatedButton(
               onPressed: () {
@@ -47,7 +47,7 @@ class MyHomePage extends StatelessWidget {
               },
               child: const Text('Tarefas'),
             ),
-
+            const SizedBox(height: 20),
             // Botao para lista de imagens salvas:
             ElevatedButton(
               onPressed: () {

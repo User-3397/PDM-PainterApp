@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 // A tela de recolorir foto já existe no projeto, vamos importá-la.
-import '../lib2/screens/photo_recolor.dart';
+//import '../lib2/screens/photo_recolor.dart';
 
 class GaleriaPage extends StatefulWidget {
   const GaleriaPage({super.key});
@@ -17,6 +17,7 @@ class _GaleriaPageState extends State<GaleriaPage> {
   Future<void> _abrirGaleria() async {
     final picker = ImagePicker();
     final imagem = await picker.pickImage(source: ImageSource.gallery);
+    // = await picker.pickImage(source: ImageSource.camera);
 
     if (imagem != null) {
       setState(() {
@@ -28,13 +29,12 @@ class _GaleriaPageState extends State<GaleriaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Galeria de Fotos')),
-      body: Center(
+      appBar: AppBar(title: const Text('Galeria de Fotos')),
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Se tiver imagem selecionada, aparece botao de edição com ia, para recolorir
-            
           ],
         ),
       ),

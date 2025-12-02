@@ -2,6 +2,7 @@ import 'dart:async'; //para usar a classe Timer
 import 'package:flutter/material.dart';
 //import 'package:aula3_resolvido_splash/myhomepage.dart';
 import 'myhomepage.dart';
+//import 'package:pdmpainterapp/images/client-16.png' as fundo;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -28,16 +29,16 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          //
+          // Imagem de fundo:
           Container(
             height: 400,
             width: 400,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black, width: 5),
-              shape: BoxShape.circle,
+              //shape: BoxShape.circle,
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: const AssetImage('assets/images/Magda Project.PNG'),
+                image: const AssetImage('lib/images/splashWaiting.gif'),
               ),
             ),
           ),

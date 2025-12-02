@@ -16,6 +16,7 @@ dependencies:
   mask_text_input_formatter: ^2.5.0 
   intl: ^0.17.0
   http: ^1.2.0
+  image_picker: ^1.0.0 # acessar galeria do celular
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +32,7 @@ flutter:
     - lib/images/ruidos-01.jpg
     - lib/images/pedras-01.jpg
     - lib/images/hieroglifos-01.jpg
-  
+    - lib/images/splashWaiting.gif
   # fonts:
   #   - family: Schyler
   #     fonts:
