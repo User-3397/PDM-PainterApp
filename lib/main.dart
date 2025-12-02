@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pdmpainterapp/pages/splashscreen.dart';
+import 'package:pdmpainterapp/pages/myhomepage.dart';
+import 'package:pdmpainterapp/pages/clientesPage.dart';
+import 'package:pdmpainterapp/pages/TasksPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,23 +12,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // Application name
-      title: 'Flutter Hello World',
+      title: 'Painter App',
       // Application theme data, you can set the colors for the application as
       // you want
       theme: ThemeData(
         // useMaterial3: false,
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xff585858),
+          foregroundColor: Colors.white,
+          elevation: 4,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.amber,
+            foregroundColor: Colors.black,
+            textStyle: const TextStyle(fontSize: 16),
+          ),
+        ),
       ),
+      initialRoute: '/api/splash',
       // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/api/splash': (context) => const SplashScreen(),
+        '/api/home': (context) => const MyHomePage(),
+        '/api/clientes': (context) => const ClientesPage(),
+        '/api/tarefas': (context) => const TarefasPage(),
+        //DetalhesAniversario.nomeRota: (context) => DetalhesAniversario(),
+        //ListarAniversarios.nomeRota: (context) => ListarAniversarios(),
+      },
+      //home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+/*class MyHomePage extends StatelessWidget {
   final String title;
-  const MyHomePage({super.key, required this.title});  
+  const MyHomePage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -40,4 +66,4 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
-}
+}*/

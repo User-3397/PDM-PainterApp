@@ -1,0 +1,13 @@
+# Os projetos deverão conter:
+
+[X] tela de abertura (splash screen)
+[] persistência de dados em banco de dados (as operações básicas de CRUD)
+[] validação de campos (no caso de aplicações que contenham formulários)
+[] um Widget além dos vistos em aula.
+
+[X] Protótipo com Rotas de Navegação - 1 ponto
+[X] SplashScreen - 1 ponto
+[] CRUD - 3 pontos
+[] Validação de Campos - 2 pontos
+[] Widget extra - 1 ponto
+[] Execução local (1 ponto) ou no Dispositivo (2 pontos)
