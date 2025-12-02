@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
             // botao para lista de clientes cadastrados:
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/clients');
+                Navigator.pushNamed(context, '/clientes');
               },
               child: const Text('Clientes'),
             ),

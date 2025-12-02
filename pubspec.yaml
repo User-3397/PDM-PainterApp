@@ -33,6 +33,7 @@ flutter:
     - lib/images/pedras-01.jpg
     - lib/images/hieroglifos-01.jpg
     - lib/images/splashWaiting.gif
+    - lib/images/client-16.png
   # fonts:
   #   - family: Schyler
   #     fonts:

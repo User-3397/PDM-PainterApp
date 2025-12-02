@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pdmpainterapp/pages/splashscreen.dart';
 import 'package:pdmpainterapp/pages/myhomepage.dart';
+import 'package:pdmpainterapp/pages/clientesPage.dart';
+import 'package:pdmpainterapp/pages/TasksPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/api/splash': (context) => const SplashScreen(),
         '/api/home': (context) => const MyHomePage(),
-        //ConfirmaCadastro.nomeRota: (context) => ConfirmaCadastro(),
+        '/api/clientes': (context) => const ClientesPage(),
+        '/api/tarefas': (context) => const TarefasPage(),
         //DetalhesAniversario.nomeRota: (context) => DetalhesAniversario(),
         //ListarAniversarios.nomeRota: (context) => ListarAniversarios(),
       },
