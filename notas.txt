@@ -1,4 +1,4 @@
-# Os projetos deverão conter:
+# O projeto deve conter:
 
 [X] tela de abertura (splash screen)
 [] persistência de dados em banco de dados (as operações básicas de CRUD)
@@ -11,3 +11,11 @@
 [] Validação de Campos - 2 pontos
 [] Widget extra - 1 ponto
 [] Execução local (1 ponto) ou no Dispositivo (2 pontos)
+
+
+-------------------------------------------------------------------
+
+
+[] Adicionar confirmação de exclusão (dialog)
+[] Popular DB inicial automaticamente (seed) na primeira execução
+[] Melhorar UX (mensagens de sucesso, pull-to-refresh, ordenação por data).

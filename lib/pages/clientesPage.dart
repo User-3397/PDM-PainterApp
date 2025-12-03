@@ -1,9 +1,46 @@
 import 'package:flutter/material.dart';
-//import 'package:myapp/models/cliente.dart';
 import 'package:pdmpainterapp/models/cliente.dart';
+import 'package:pdmpainterapp/database/db_helper.dart';
+import 'cliente_form.dart';
 
-class ClientesPage extends StatelessWidget {
+class ClientesPage extends StatefulWidget {
   const ClientesPage({super.key});
+
+  @override
+  State<ClientesPage> createState() => _ClientesPageState();
+}
+
+class _ClientesPageState extends State<ClientesPage> {
+  final DBHelper _db = DBHelper();
+  List<Cliente> _clientes = [];
+  bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadClientes();
+  }
+
+  Future<void> _loadClientes() async {
+    setState(() => _loading = true);
+    final list = await _db.getAllClientes();
+    setState(() {
+      _clientes = list;
+      _loading = false;
+    });
+  }
+
+  Future<void> _addOrEdit([Cliente? c]) async {
+    final result = await Navigator.of(context).push(MaterialPageRoute<bool>(
+      builder: (_) => ClienteFormPage(cliente: c),
+    ));
+    if (result == true) await _loadClientes();
+  }
+
+  Future<void> _deleteCliente(int id) async {
+    await _db.deleteCliente(id);
+    await _loadClientes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,46 +56,49 @@ class ClientesPage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(60, 60, 60, 1),
-        //leading: const Icon(Icons.home), //
-        actions: <Widget>[
-          CircleAvatar(
-            backgroundImage: AssetImage('assets/images/user-16.png'),
-          ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 12.0),
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/images/user-16.png'),
+            ),
+          )
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Alinhamento vertical.
-          children: <Widget>[
-            const SizedBox(height: 20), // Espaço entre os widgets
-
-            // botao para adicionar cliente:
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/cliregister');
-              },
-              child: const Text('Adicionar'),
+      body: _loading
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _clientes.isEmpty
+                  ? const Center(child: Text('Nenhum cliente cadastrado'))
+                  : ListView.builder(
+                      itemCount: _clientes.length,
+                      itemBuilder: (_, i) {
+                        final cli = _clientes[i];
+                        return Card(
+                          child: ListTile(
+                            title: Text(cli.nome),
+                            subtitle: Text('${cli.email} • ${cli.telefone}'),
+                            trailing: PopupMenuButton<String>(
+                              onSelected: (v) async {
+                                if (v == 'edit') await _addOrEdit(cli);
+                                if (v == 'del' && cli.id != null) await _deleteCliente(cli.id!);
+                              },
+                              itemBuilder: (_) => [
+                                const PopupMenuItem(value: 'edit', child: Text('Editar')),
+                                const PopupMenuItem(value: 'del', child: Text('Excluir')),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
             ),
-
-            // lista de clientes cadastrados:
-            DataTable(
-              columns: const [
-                DataColumn(label: Text('Nome')),
-                DataColumn(label: Text('Telefone')),
-                DataColumn(label: Text('E-mail')),
-              ],
-              rows: clientes.map((cli) {
-                return DataRow(cells: [
-                  DataCell(Text(cli.nome)),
-                  DataCell(Text(cli.telefone)),
-                  DataCell(Text(cli.email)),
-                ]);
-              }).toList(),
-            ),
-          ],
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _addOrEdit(),
+        child: const Icon(Icons.add),
       ),
-      backgroundColor: Color.fromRGBO(22, 22, 22, 1),
+      backgroundColor: const Color.fromRGBO(22, 22, 22, 1),
     );
   }
 }
