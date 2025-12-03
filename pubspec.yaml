@@ -34,6 +34,8 @@ flutter:
     - lib/images/hieroglifos-01.jpg
     - lib/images/splashWaiting.gif
     - lib/images/client-16.png
+    - lib/images/fundo-tarefas.jpg
+  
   # fonts:
   #   - family: Schyler
   #     fonts:

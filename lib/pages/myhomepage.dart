@@ -7,58 +7,70 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Pagina principal',
-          style: TextStyle(
-            color: const Color.fromARGB(255, 218, 218, 218),
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(60, 60, 60, 1),
-        //leading: const Icon(Icons.home), //
-        actions: <Widget>[
-          CircleAvatar(
-            backgroundImage: const AssetImage('lib/images/client-16.png'),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Alinhamento vertical.
-          children: <Widget>[
-            const SizedBox(height: 20), // Espaço entre os widgets
-            const Text('Olá pintor'),
-
-            // botao para lista de clientes cadastrados:
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/clientes');
-              },
-              child: const Text('Clientes'),
+        appBar: AppBar(
+          title: const Text(
+            'Pagina principal',
+            style: TextStyle(
+              color: Color.fromARGB(255, 218, 218, 218),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height: 20),
-            // Botao para lista de tarefas:
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/tasks');
-              },
-              child: const Text('Tarefas'),
-            ),
-            const SizedBox(height: 20),
-            // Botao para lista de imagens salvas:
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/galery');
-              },
-              child: const Text('Galeria'),
+          ),
+          centerTitle: true,
+          backgroundColor: const Color.fromRGBO(60, 60, 60, 1),
+          //leading: const Icon(Icons.home), //
+          actions: <Widget>[
+            CircleAvatar(
+              backgroundImage: const AssetImage('lib/images/client-16.png'),
             ),
           ],
         ),
-      ),
-      backgroundColor: Color.fromRGBO(22, 22, 22, 1),
-    );
+        body: Column(
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('lib/images/ruidos-01.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment:
+                      MainAxisAlignment.center, // Alinhamento vertical.
+                  children: <Widget>[
+                    const SizedBox(height: 20), // Espaço entre os widgets
+                    const Text('Olá pintor',
+                        style: TextStyle(color: Colors.white)),
+
+                    // botao para lista de clientes cadastrados:
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/clientes');
+                      },
+                      child: const Text('Clientes'),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Botao para lista de tarefas:
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/api/tarefas');
+                      },
+                      child: const Text('Tarefas'),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Botao para lista de imagens salvas:
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/galery');
+                      },
+                      child: const Text('Galeria'),
+                    ),
+                  ],
+                ),
+              ),
+            ]));
   }
 }

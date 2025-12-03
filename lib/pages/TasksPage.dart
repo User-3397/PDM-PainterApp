@@ -27,11 +27,17 @@ class _TarefasPageState extends State<TarefasPage> {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       appBar: _buildAppBar(),
-      body: Center(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/images/fundo-tarefas.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Alinhamento vertical.
           children: <Widget>[
             // Lista de tarefas
+            //
             // Botao para adicionar uma tarefa:
             ElevatedButton(
               onPressed: () {},

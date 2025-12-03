@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:myapp/models/cliente.dart';
-import 'package:pdmpainterapp/models/cliente.dart';
+import 'package:pdmpainterapp/models/Cliente.dart';
 
 class ClientesPage extends StatelessWidget {
   const ClientesPage({super.key});
@@ -20,9 +20,9 @@ class ClientesPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(60, 60, 60, 1),
         //leading: const Icon(Icons.home), //
-        actions: <Widget>[
+        actions: const <Widget>[
           CircleAvatar(
-            backgroundImage: AssetImage('assets/images/user-16.png'),
+            backgroundImage: const AssetImage('lib/images/client-16.png'),
           ),
         ],
       ),
@@ -58,7 +58,7 @@ class ClientesPage extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Color.fromRGBO(22, 22, 22, 1),
+      backgroundColor: const Color.fromRGBO(22, 22, 22, 1),
     );
   }
 }
