@@ -29,6 +29,7 @@ class _TarefasPageState extends State<TarefasPage> {
     setState(() {
       tasks = list;
       _loading = false;
+      print("_loadTasks: Carregado.");
     });
   }
 
@@ -49,10 +50,10 @@ class _TarefasPageState extends State<TarefasPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Tarefas'), centerTitle: true),
       body: _loading
-          ? const Center(child: CircularProgressIndicator())
+          ? /*Carrgando: */ const Center(child: CircularProgressIndicator())
           : tasks.isEmpty
-              ? const Center(child: Text('Nenhuma tarefa'))
-              : ListView.builder(
+              ? /*Sem dados: */ const Center(child: Text('Nenhuma tarefa'))
+              : /*Com dados: */ ListView.builder(
                   itemCount: tasks.length,
                   itemBuilder: (_, i) {
                     final t = tasks[i];
@@ -71,11 +72,14 @@ class _TarefasPageState extends State<TarefasPage> {
                         trailing: PopupMenuButton<String>(
                           onSelected: (v) async {
                             if (v == 'edit') await _addOrEdit(t);
-                            if (v == 'del' && t.id != null) await _delete(t.id!);
+                            if (v == 'del' && t.id != null)
+                              await _delete(t.id!);
                           },
                           itemBuilder: (_) => [
-                            const PopupMenuItem(value: 'edit', child: Text('Editar')),
-                            const PopupMenuItem(value: 'del', child: Text('Excluir')),
+                            const PopupMenuItem(
+                                value: 'edit', child: Text('Editar')),
+                            const PopupMenuItem(
+                                value: 'del', child: Text('Excluir')),
                           ],
                         ),
                       ),

@@ -15,7 +15,7 @@
 
 -------------------------------------------------------------------
 
-
+[] Singleton está sendo usado?
 [] Adicionar confirmação de exclusão (dialog)
 [] Popular DB inicial automaticamente (seed) na primeira execução
 [] Melhorar UX (mensagens de sucesso, pull-to-refresh, ordenação por data).

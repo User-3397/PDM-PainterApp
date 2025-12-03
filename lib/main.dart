@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pdmpainterapp/pages/splashscreen.dart';
 import 'package:pdmpainterapp/pages/myhomepage.dart';
-import 'package:pdmpainterapp/pages/clientesPage.dart';
+import 'package:pdmpainterapp/pages/clientes_page.dart';
 import 'package:pdmpainterapp/pages/TasksPage.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

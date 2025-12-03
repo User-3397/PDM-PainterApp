@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
             // botao para lista de clientes cadastrados:
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/clientes');
+                Navigator.pushNamed(context, '/api/clientes');
               },
               child: const Text('Clientes'),
             ),
@@ -43,7 +43,7 @@ class MyHomePage extends StatelessWidget {
             // Botao para lista de tarefas:
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/tasks');
+                Navigator.pushNamed(context, '/api/tarefas');
               },
               child: const Text('Tarefas'),
             ),
@@ -58,7 +58,7 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Color.fromRGBO(22, 22, 22, 1),
+      backgroundColor: const Color.fromRGBO(22, 22, 22, 1),
     );
   }
 }
