@@ -10,13 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.8
   sqflite: ^2.3.2 # criar, consultar, atualizar e excluir dados [persistência offline].
   path_provider: ^2.0.15 # é usado para tarefas como armazenar arquivos locais, acessar o cache do aplicativo e obter o caminho do diretório de documentos
   # biblioteca que formata dinamicamente a entrada do usuário em TextField ou TextFormField, usando uma máscara definida por você. Por exemplo, ao digitar um CPF, o campo já insere os pontos e traço automaticamente: 123.456.789-00.
   mask_text_input_formatter: ^2.5.0 
-  intl: ^0.17.0
+  intl: ^0.20.2 #0.17.0
   http: ^1.2.0
   image_picker: ^1.0.0 # acessar galeria do celular
+  supabase_flutter: ^2.10.3
 
 dev_dependencies:
   flutter_test:

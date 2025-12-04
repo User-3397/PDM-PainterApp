@@ -1,4 +1,4 @@
-import 'package:path/path.dart';
+/*import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:pdmpainterapp/models/Cliente.dart';
 import 'package:pdmpainterapp/models/Tarefa.dart';
@@ -47,47 +47,58 @@ class DBHelper {
     });
   }
 
-  // CLIENTES
+  // CLIENTES --------------------------------------------
+  // C
   Future<int> insertCliente(Cliente c) async {
     final database = await db;
     return await database.insert('clientes', c.toMap());
   }
 
+  // U
   Future<int> updateCliente(Cliente c) async {
     final database = await db;
-    return await database.update('clientes', c.toMap(), where: 'id = ?', whereArgs: [c.id]);
+    return await database
+        .update('clientes', c.toMap(), where: 'id = ?', whereArgs: [c.id]);
   }
 
+  // D
   Future<int> deleteCliente(int id) async {
     final database = await db;
     return await database.delete('clientes', where: 'id = ?', whereArgs: [id]);
   }
 
+  // R
   Future<List<Cliente>> getAllClientes() async {
     final database = await db;
     final maps = await database.query('clientes', orderBy: 'nome');
     return maps.map((m) => Cliente.fromMap(m)).toList();
   }
 
-  // TAREFAS
+  // TAREFAS -----------------------------------------
+  // C
   Future<int> insertTarefa(Tarefa t) async {
     final database = await db;
     return await database.insert('tarefas', t.toMap());
   }
 
-  Future<int> updateTarefa(Tarefa t) async {
-    final database = await db;
-    return await database.update('tarefas', t.toMap(), where: 'id = ?', whereArgs: [t.id]);
-  }
-
-  Future<int> deleteTarefa(int id) async {
-    final database = await db;
-    return await database.delete('tarefas', where: 'id = ?', whereArgs: [id]);
-  }
-
+  // R
   Future<List<Tarefa>> getAllTarefas() async {
     final database = await db;
     final maps = await database.query('tarefas', orderBy: 'dia DESC');
     return maps.map((m) => Tarefa.fromMap(m)).toList();
   }
+
+  // U
+  Future<int> updateTarefa(Tarefa t) async {
+    final database = await db;
+    return await database
+        .update('tarefas', t.toMap(), where: 'id = ?', whereArgs: [t.id]);
+  }
+
+  // D
+  Future<int> deleteTarefa(int id) async {
+    final database = await db;
+    return await database.delete('tarefas', where: 'id = ?', whereArgs: [id]);
+  }
 }
+*/

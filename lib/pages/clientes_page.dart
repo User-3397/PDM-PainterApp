@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdmpainterapp/models/cliente.dart';
+import 'package:pdmpainterapp/models/Cliente.dart';
 import 'package:pdmpainterapp/database/db_helper.dart';
 import 'cliente_form.dart';
 
@@ -46,10 +46,10 @@ class _ClientesPageState extends State<ClientesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Clientes',
           style: TextStyle(
-            color: const Color.fromARGB(255, 0, 208, 177),
+            color: Color.fromARGB(255, 0, 208, 177),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -60,7 +60,7 @@ class _ClientesPageState extends State<ClientesPage> {
           Padding(
             padding: EdgeInsets.only(right: 12.0),
             child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/user-16.png'),
+              backgroundImage: AssetImage('lib/images/client-16.png'),
             ),
           )
         ],
@@ -82,11 +82,14 @@ class _ClientesPageState extends State<ClientesPage> {
                             trailing: PopupMenuButton<String>(
                               onSelected: (v) async {
                                 if (v == 'edit') await _addOrEdit(cli);
-                                if (v == 'del' && cli.id != null) await _deleteCliente(cli.id!);
+                                if (v == 'del' && cli.id != null)
+                                  await _deleteCliente(cli.id!);
                               },
                               itemBuilder: (_) => [
-                                const PopupMenuItem(value: 'edit', child: Text('Editar')),
-                                const PopupMenuItem(value: 'del', child: Text('Excluir')),
+                                const PopupMenuItem(
+                                    value: 'edit', child: Text('Editar')),
+                                const PopupMenuItem(
+                                    value: 'del', child: Text('Excluir')),
                               ],
                             ),
                           ),
