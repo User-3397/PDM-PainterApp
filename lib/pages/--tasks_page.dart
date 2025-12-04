@@ -67,8 +67,8 @@ class _TarefasPageState extends State<TarefasPage> {
                             await _loadTasks();
                           },
                         ),
-                        title: Text(t.titulo.isEmpty ? t.servico : t.titulo),
-                        subtitle: Text('${t.cliente} • ${t.descricao}'),
+                        title: Text(t.servico.isEmpty ? t.servico : t.servico),
+                        subtitle: Text('${t.cliente} • ${t.notas}'),
                         trailing: PopupMenuButton<String>(
                           onSelected: (v) async {
                             if (v == 'edit') await _addOrEdit(t);

@@ -1,4 +1,4 @@
-import 'package:path/path.dart';
+/*import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:pdmpainterapp/models/Cliente.dart';
 import 'package:pdmpainterapp/models/Tarefa.dart';
@@ -101,3 +101,4 @@ class DBHelper {
     return await database.delete('tarefas', where: 'id = ?', whereArgs: [id]);
   }
 }
+*/
