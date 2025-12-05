@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:pdmpainterapp/models/Tarefa.dart';
-import 'package:pdmpainterapp/database/db_helper.dart';
+//import 'package:pdmpainterapp/database/db_helper.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:pdmpainterapp/service/task_service.dart';
 import 'tarefa_form.dart';
 
 class TarefasPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class TarefasPage extends StatefulWidget {
 }
 
 class _TarefasPageState extends State<TarefasPage> {
-  final _db = Supabase.instance.client;
+  final service = TaskService();
   List<Map<String, dynamic>> tarefas = [];
 
   bool _loading = true;
@@ -26,18 +27,22 @@ class _TarefasPageState extends State<TarefasPage> {
   }
 
   Future<void> _loadTasks() async {
-    final response = await _db.from('Tarefas').select();
-    setState(() => tarefas = response);
+    // final response = await _taskRepo.from('Tarefas').select();
+    setState(() => _loading = true);
+    final list = await service.listarTodos();
+
+    setState(() => tarefas = list);
   }
 
-  Future<void> _addOrEdit(Tarefa t) async {
-    final res = await _db.from('Tarefas').select().eq('id', t.id!);
-    if (res.isNotEmpty)
-      await _db.from('Tarefas').update(t.toMap()).eq('id', t.id!);
+  Future<int> _addOrEdit(Tarefa t) {
+    final res = service.atualizar(t);
+    ;
+    if (res == 1) _loadTasks();
+    return res;
   }
 
   Future<void> _delete(int id) async {
-    await _db.from('Tarefas').delete().eq('id', id);
+    await service.deletar(id);
     await _loadTasks();
   }
 
