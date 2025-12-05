@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:pdmpainterapp/pages/splashscreen.dart';
@@ -9,9 +9,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   await Supabase.initialize(
-      url: 'https://hjneuhcnpkafxticzbjr.supabase.co',
+      url: "https://hjneuhcnpkafxticzbjr.supabase.co",
       anonKey:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhqbmV1aGNucGthZnh0aWN6YmpyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3ODQxMjQsImV4cCI6MjA4MDM2MDEyNH0.Jx3ifjdXZ6ByBLqC0kAgcmXxtREj2P2Y0bHDvZUFX50');
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhqbmV1aGNucGthZnh0aWN6YmpyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3ODQxMjQsImV4cCI6MjA4MDM2MDEyNH0.Jx3ifjdXZ6ByBLqC0kAgcmXxtREj2P2Y0bHDvZUFX50");
 
   runApp(const MyApp());
 }

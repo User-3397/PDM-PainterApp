@@ -1,4 +1,4 @@
-//import 'dart:ffi'; // para usar a classe DateTime
+/*//import 'dart:ffi'; // para usar a classe DateTime
 
 import 'package:flutter/material.dart';
 import 'package:pdmpainterapp/models/Tarefa.dart';
@@ -50,10 +50,10 @@ class _TarefasPageState extends State<TarefasPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Tarefas'), centerTitle: true),
       body: _loading
-          ? /*Carrgando: */ const Center(child: CircularProgressIndicator())
+          ?  const Center(child: CircularProgressIndicator())
           : tasks.isEmpty
-              ? /*Sem dados: */ const Center(child: Text('Nenhuma tarefa'))
-              : /*Com dados: */ ListView.builder(
+              ?  const Center(child: Text('Nenhuma tarefa'))
+              :  ListView.builder(
                   itemCount: tasks.length,
                   itemBuilder: (_, i) {
                     final t = tasks[i];
@@ -93,3 +93,4 @@ class _TarefasPageState extends State<TarefasPage> {
     );
   }
 }
+*/

@@ -52,14 +52,14 @@ class _TarefasPageState extends State<TarefasPage> {
               : /*Com dados: */ ListView.builder(
                   itemCount: tarefas.length,
                   itemBuilder: (_, i) {
-                    final t = tarefas[i];
+                    final t = Tarefa.fromMap(tarefas[i]);
                     return Card(
                       child: ListTile(
                         leading: Checkbox(
-                          value: t['isDone'],
+                          value: t.isDone,
                           onChanged: (v) async {
-                            t['isDone'] = v ?? false;
-                            await _addOrEdit(t.map());
+                            t.isDone = v ?? false;
+                            await _addOrEdit(t);
                             await _loadTasks();
                           },
                         ),
@@ -83,9 +83,32 @@ class _TarefasPageState extends State<TarefasPage> {
                   },
                 ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _addOrEdit(),
+        onPressed: () => _buildDialog(context),
         child: const Icon(Icons.add),
       ),
+    );
+  }
+
+  void _buildDialog(ctx) {
+    showDialog(
+      context: ctx,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Título do Alerta'),
+          content: const Text('Conteúdo da mensagem.'),
+          actions: [
+            TextButton(
+              child: const Text('Adicionar'),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+            ),
+            TextButton(
+                child: const Text('Cancelar'),
+                onPressed: () => Navigator.of(ctx).pop()),
+          ],
+        );
+      },
     );
   }
 }
