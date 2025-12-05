@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pdmpainterapp/models/Cliente.dart';
-import 'package:pdmpainterapp/database/db_helper.dart';
+// import 'package:pdmpainterapp/database/db_helper.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:pdmpainterapp/repository/clients_repository.dart';
 import 'cliente_form.dart';
 
 class ClientesPage extends StatefulWidget {
@@ -11,7 +13,9 @@ class ClientesPage extends StatefulWidget {
 }
 
 class _ClientesPageState extends State<ClientesPage> {
-  final DBHelper _db = DBHelper();
+  //final DBHelper _db = DBHelper();
+  //final _db = Supabase.instance.client;
+  final _cliRepo = ClientsRepository();
   List<Cliente> _clientes = [];
   bool _loading = true;
 
@@ -23,7 +27,8 @@ class _ClientesPageState extends State<ClientesPage> {
 
   Future<void> _loadClientes() async {
     setState(() => _loading = true);
-    final list = await _db.getAllClientes();
+    final list = await _cliRepo.findAll();
+
     setState(() {
       _clientes = list;
       _loading = false;
@@ -31,14 +36,14 @@ class _ClientesPageState extends State<ClientesPage> {
   }
 
   Future<void> _addOrEdit([Cliente? c]) async {
-    final result = await Navigator.of(context).push(MaterialPageRoute<bool>(
-      builder: (_) => ClienteFormPage(cliente: c),
-    ));
-    if (result == true) await _loadClientes();
+    //final result = await Navigator.of(context).push(MaterialPageRoute<bool>(
+    //  builder: (_) => ClienteFormPage(cliente: c),
+    //));
+    //if (result == true) await _loadClientes();
   }
 
   Future<void> _deleteCliente(int id) async {
-    await _db.deleteCliente(id);
+    await _cliRepo.deleteClient(id);
     await _loadClientes();
   }
 
@@ -55,7 +60,7 @@ class _ClientesPageState extends State<ClientesPage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(60, 60, 60, 1),
+        backgroundColor: const Color(0xff444444),
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 12.0),
@@ -70,10 +75,13 @@ class _ClientesPageState extends State<ClientesPage> {
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: _clientes.isEmpty
-                  ? const Center(child: Text('Nenhum cliente cadastrado'))
+                  ? const Center(
+                      child: Text('Nenhum cliente cadastrado',
+                          style: TextStyle(color: Colors.white)))
                   : ListView.builder(
+                      // _buildStreamList()
                       itemCount: _clientes.length,
-                      itemBuilder: (_, i) {
+                      itemBuilder: (_ /*context*/, i) {
                         final cli = _clientes[i];
                         return Card(
                           child: ListTile(
@@ -102,6 +110,30 @@ class _ClientesPageState extends State<ClientesPage> {
         child: const Icon(Icons.add),
       ),
       backgroundColor: const Color.fromRGBO(22, 22, 22, 1),
+    );
+  }
+
+  // Sempre que houver insert, update ou delete na tabela, o stream emite novos dados
+  StreamBuilder _buildStreamList(BuildContext ctx) {
+    return StreamBuilder<List<Cliente>>(
+      stream: _cliRepo.stream,
+      builder: (ctx, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        final clientes = snapshot.data!;
+        return ListView.builder(
+          itemCount: clientes.length,
+          itemBuilder: (context, i) {
+            final c = clientes[i];
+            return ListTile(
+              title: Text(c.nome),
+              //subtitle: Text(c.telefone),
+            );
+          },
+        );
+      },
     );
   }
 }

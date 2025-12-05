@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:pdmpainterapp/models/Tarefa.dart';
 import 'package:pdmpainterapp/database/db_helper.dart';
 
@@ -12,29 +12,27 @@ class TarefaFormPage extends StatefulWidget {
 
 class _TarefaFormPageState extends State<TarefaFormPage> {
   final _formKey = GlobalKey<FormState>();
-  final _tituloCtrl = TextEditingController();
+  //final _tituloCtrl = TextEditingController();
   final _servicoCtrl = TextEditingController();
   final _clienteCtrl = TextEditingController();
-  final _descricaoCtrl = TextEditingController();
+  final _notasCtrl = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     final t = widget.tarefa;
     if (t != null) {
-      _tituloCtrl.text = t.titulo;
       _servicoCtrl.text = t.servico;
-      _clienteCtrl.text = t.cliente;
-      _descricaoCtrl.text = t.descricao;
+      _clienteCtrl.text = t.cliente.toString();
+      _notasCtrl.text = t.notas;
     }
   }
 
   @override
   void dispose() {
-    _tituloCtrl.dispose();
     _servicoCtrl.dispose();
     _clienteCtrl.dispose();
-    _descricaoCtrl.dispose();
+    _notasCtrl.dispose();
     super.dispose();
   }
 
@@ -43,10 +41,9 @@ class _TarefaFormPageState extends State<TarefaFormPage> {
     final db = DBHelper();
     final tarefa = Tarefa(
       id: widget.tarefa?.id,
-      titulo: _tituloCtrl.text.trim(),
       servico: _servicoCtrl.text.trim(),
       cliente: _clienteCtrl.text.trim(),
-      descricao: _descricaoCtrl.text.trim(),
+      notas: _notasCtrl.text.trim(),
     );
 
     if (widget.tarefa == null) {
@@ -60,7 +57,8 @@ class _TarefaFormPageState extends State<TarefaFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.tarefa == null ? 'Nova Tarefa' : 'Editar Tarefa')),
+      appBar: AppBar(
+          title: Text(widget.tarefa == null ? 'Nova Tarefa' : 'Editar Tarefa')),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Form(
@@ -68,23 +66,22 @@ class _TarefaFormPageState extends State<TarefaFormPage> {
           child: Column(
             children: [
               TextFormField(
-                controller: _tituloCtrl,
-                decoration: const InputDecoration(labelText: 'Título'),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Título obrigatório' : null,
-              ),
-              TextFormField(
                 controller: _servicoCtrl,
                 decoration: const InputDecoration(labelText: 'Serviço'),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Serviço obrigatório' : null,
+                validator: (v) => (v == null || v.trim().isEmpty)
+                    ? 'Serviço obrigatório'
+                    : null,
               ),
               TextFormField(
                 controller: _clienteCtrl,
                 decoration: const InputDecoration(labelText: 'Cliente'),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Cliente obrigatório' : null,
+                validator: (v) => (v == null || v.trim().isEmpty)
+                    ? 'Cliente obrigatório'
+                    : null,
               ),
               TextFormField(
-                controller: _descricaoCtrl,
-                decoration: const InputDecoration(labelText: 'Descrição'),
+                controller: _notasCtrl,
+                decoration: const InputDecoration(labelText: 'Notas'),
                 maxLines: 3,
               ),
               const SizedBox(height: 20),
@@ -96,3 +93,4 @@ class _TarefaFormPageState extends State<TarefaFormPage> {
     );
   }
 }
+*/

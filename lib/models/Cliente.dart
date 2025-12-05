@@ -2,7 +2,7 @@ class Cliente {
   int? id;
   String nome;
   String email;
-  String telefone;
+  int telefone;
 
   Cliente({
     this.id,
@@ -29,7 +29,7 @@ class Cliente {
 }
 
 // Lista de exemplo (não usada pelo DB diretamente)
-final List<Cliente> clientes = [
+/*final List<Cliente> clientes = [
   Cliente(
       nome: 'Ana Silva',
       email: 'ana.silva@email.com',
@@ -42,4 +42,4 @@ final List<Cliente> clientes = [
       nome: 'Carlos Dias',
       email: 'c.dias@email.com',
       telefone: '31 95555-4444'),
-];
+];*/

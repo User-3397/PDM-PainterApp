@@ -94,8 +94,8 @@ class _TarefasPageState extends State<TarefasPage> {
       context: ctx,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Título do Alerta'),
-          content: Text('Conteúdo da mensagem.'),
+          title: const Text('Título do Alerta'),
+          content: const Text('Conteúdo da mensagem.'),
           actions: [
             TextButton(
               child: const Text('Adicionar'),
