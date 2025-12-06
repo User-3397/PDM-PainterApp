@@ -18,9 +18,10 @@ class TaskService {
 
   Future<int> atualizar(int id, String campo, dynamic valor) async {
     final map = await _taskRepo.findById(id);
+
     if (map != null) {
       _taskRepo.setFill(id, campo, valor);
-
+      return 1;
       /*Map<String, dynamic> newMap = t.toMap();
       if (newMap['servico'] != map['servico'])
         _taskRepo.setServico(map['id'], newMap['servico']);

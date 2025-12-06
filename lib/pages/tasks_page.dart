@@ -40,17 +40,6 @@ class _TarefasPageState extends State<TarefasPage> {
     });
   }
 
-  // Future<int> _addOrEdit(Tarefa t) {
-  //   final res = service.atualizar(t);
-
-  //   if (res == 1) _loadTasks();
-  //   return res;
-  // }
-
-  // Future<void> _setDone(int id, bool done) async {
-  //   await service.setDone(id, done);
-  // }
-
   Future<void> _delete(int id) async {
     await service.deletar(id);
     await _loadTasks();
@@ -147,15 +136,15 @@ class _TarefasPageState extends State<TarefasPage> {
           child: ListTile(
             leading: Checkbox(
               value: t.isDone,
-              onChanged: (v) async {
+              onChanged: (bool? v) async {
+                if (v == null) return;
                 setState(() {
-                  t.isDone = !t.isDone;
+                  t.isDone = v;
                 });
 
-                print(v);
-                await service.atualizar(
-                    t.id!, 'done', t.isDone); //_addOrEdit(t);
-                await _loadTasks();
+                /*final res = */ await service.atualizar(
+                    t.id!, 'done', t.isDone);
+                //await _loadTasks();
               },
             ),
             title: Text(t.servico.isEmpty ? '[sem nome]' : t.servico),

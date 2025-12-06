@@ -25,7 +25,7 @@ class TasksRepository {
 
   // U
   void setFill(int id, String fill, dynamic value) async {
-    await database.update({fill: value});
+    await database.update({fill: value}).eq('id', id);
   }
 
   void setServico(int id, String valor) async {

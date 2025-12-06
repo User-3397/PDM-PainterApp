@@ -31,6 +31,7 @@ class Tarefa {
   // Back to Front:
   factory Tarefa.fromMap(Map<String, dynamic> map) {
     return Tarefa(
+        id: map['id'] as int,
         servico: map['servico'] as String,
         data: map['data'] != null ? DateTime.parse(map['data']) : null,
         cliente: map['id_cliente'] as int,
