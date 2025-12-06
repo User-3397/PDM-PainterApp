@@ -4,18 +4,24 @@ import 'package:pdmpainterapp/models/Tarefa.dart';
 class TaskService {
   final _taskRepo = TasksRepository();
 
-  Future listarTodos() {
-    return _taskRepo.findAll();
+  Future<List<Tarefa>> listarTodos() async {
+    final response = await _taskRepo.findAll();
+    //print(response);
+    final lista = response.map((item) => Tarefa.fromMap(item)).toList();
+
+    return lista;
   }
 
   Future porId(int id) {
     return _taskRepo.findById(id);
   }
 
-  Future<int> atualizar(Tarefa t) async {
-    final map = await _taskRepo.findById(t.id!);
+  Future<int> atualizar(int id, String campo, dynamic valor) async {
+    final map = await _taskRepo.findById(id);
     if (map != null) {
-      Map<String, dynamic> newMap = t.toMap();
+      _taskRepo.setFill(id, campo, valor);
+
+      /*Map<String, dynamic> newMap = t.toMap();
       if (newMap['servico'] != map['servico'])
         _taskRepo.setServico(map['id'], newMap['servico']);
       if (newMap['data'] != map['data'])
@@ -25,7 +31,7 @@ class TaskService {
       if (newMap['notas'] != map['notas'])
         _taskRepo.setNotas(map['id'], newMap['notas']);
       if (newMap['isDone'] != map['isDone'])
-        _taskRepo.setConcluido(map['id'], newMap['isDone']);
+        _taskRepo.setConcluido(map['id'], newMap['isDone']);*/
     }
 
     return 0;

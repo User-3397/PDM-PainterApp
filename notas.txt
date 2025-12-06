@@ -1,3 +1,5 @@
+# Edição: 05/12
+
 # O projeto deve conter:
 
 [X] tela de abertura (splash screen)

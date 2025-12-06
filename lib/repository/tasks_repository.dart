@@ -13,10 +13,8 @@ class TasksRepository {
 
   // R
   //final stream = Supabase.instance.client.from('Tarefas').stream(primaryKey: ['id']).map((data) => data.map((taskMap) => Tarefa.fromMap(taskMap)).toList());
-  Future findAll() async {
-    final response = await database.select();
-    final lista = response.map((item) => Tarefa.fromMap(item)).toList();
-    return lista;
+  Future<List<Map<String, dynamic>>> findAll() async {
+    return await database.select();
   }
 
   Future<Map<String, dynamic>?> findById(int id) async {
@@ -26,6 +24,10 @@ class TasksRepository {
   }
 
   // U
+  void setFill(int id, String fill, dynamic value) async {
+    await database.update({fill: value});
+  }
+
   void setServico(int id, String valor) async {
     await database.update({'servico': valor}).eq('id', id);
   }
