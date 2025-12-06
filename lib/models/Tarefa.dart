@@ -3,7 +3,7 @@
 class Tarefa {
   int? id;
   String servico;
-  String data;
+  DateTime? data;
   int cliente;
   String notas;
   bool isDone; // Indica se a tarefa foi concluída
@@ -11,11 +11,11 @@ class Tarefa {
   Tarefa({
     this.id,
     required this.servico,
-    String? data,
+    required this.data,
     required this.cliente,
     this.notas = '',
     this.isDone = false,
-  }) : data = data ?? DateTime.now().toIso8601String();
+  }); // : data = data ?? DateTime.now().toIso8601String();
 
   /*Tarefa.fromMap(Map<String, dynamic> map)
       : id = map['id'],
@@ -31,8 +31,9 @@ class Tarefa {
   // Back to Front:
   factory Tarefa.fromMap(Map<String, dynamic> map) {
     return Tarefa(
+        id: map['id'] as int,
         servico: map['servico'] as String,
-        data: map['data'] as String,
+        data: map['data'] != null ? DateTime.parse(map['data']) : null,
         cliente: map['id_cliente'] as int,
         notas: map['notas'] as String,
         isDone: map['done'] as bool);
@@ -53,7 +54,7 @@ class Tarefa {
   Map<String, dynamic> toMap() {
     return {
       'servico': servico,
-      'data': data,
+      'data': data!.toIso8601String(), // modificado para '!.toIso8601String()'
       'id_cliente': cliente,
       'notas': notas,
       'done': isDone

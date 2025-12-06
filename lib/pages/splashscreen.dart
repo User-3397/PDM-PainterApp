@@ -1,4 +1,5 @@
 import 'dart:async'; //para usar a classe Timer
+import 'dart:ui';
 import 'package:flutter/material.dart';
 //import 'package:aula3_resolvido_splash/myhomepage.dart';
 import 'myhomepage.dart';
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
+        MaterialPageRoute(builder: (context) => const MyHomePage()),
       );
     });
   }
